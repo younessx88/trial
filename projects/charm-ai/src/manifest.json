@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Charm AI - Dating Conversation Assistant",
+  "version": "1.0.0",
+  "description": "AI-powered assistant that learns your messaging style and helps maintain engaging conversations",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://web.whatsapp.com/*",
+    "https://www.instagram.com/*",
+    "https://tinder.com/*",
+    "https://bumble.com/*",
+    "https://hinge.co/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": ["content/whatsapp.js"],
+      "css": ["assets/inject.css"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.instagram.com/*"],
+      "js": ["content/instagram.js"],
+      "css": ["assets/inject.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*"],
+      "matches": [
+        "https://web.whatsapp.com/*",
+        "https://www.instagram.com/*",
+        "https://tinder.com/*",
+        "https://bumble.com/*",
+        "https://hinge.co/*"
+      ]
+    }
+  ]
+}
