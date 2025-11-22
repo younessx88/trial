@@ -56,6 +56,7 @@ export interface Settings {
   enabledPlatforms: Platform[];
   messageHistoryLimit: number;
   useLocalModel: boolean;
+  smartTiming?: boolean;
 }
 
 export interface UsageStats {

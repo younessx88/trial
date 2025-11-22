@@ -14,88 +14,242 @@
       <p class="tagline">Your AI Dating Assistant</p>
     </div>
 
-    <!-- Stats Section -->
-    <div class="stats-section" id="stats-section">
-      <h2>📊 This Week</h2>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-value" id="total-suggestions">0</div>
-          <div class="stat-label">Suggestions Generated</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" id="suggestions-used">0</div>
-          <div class="stat-label">Used</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" id="conversations">0</div>
-          <div class="stat-label">Conversations</div>
-        </div>
-      </div>
+    <!-- Navigation Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="dashboard">📊 Dashboard</button>
+      <button class="tab-btn" data-tab="icebreakers">🎯 Icebreakers</button>
+      <button class="tab-btn" data-tab="analytics">📈 Analytics</button>
+      <button class="tab-btn" data-tab="settings">⚙️ Settings</button>
+    </div>
 
-      <!-- Usage Limit -->
-      <div class="usage-limit" id="usage-limit">
-        <div class="usage-bar">
-          <div class="usage-progress" id="usage-progress"></div>
+    <!-- Dashboard Tab -->
+    <div class="tab-content active" id="dashboard-tab">
+      <div class="stats-section">
+        <h2>This Week</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="total-suggestions">0</div>
+            <div class="stat-label">Suggestions</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="suggestions-used">0</div>
+            <div class="stat-label">Used</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="conversations-count">0</div>
+            <div class="stat-label">Conversations</div>
+          </div>
         </div>
-        <div class="usage-text">
-          <span id="remaining-count">50</span> / 50 suggestions remaining (Free)
-        </div>
-      </div>
 
-      <!-- Upgrade CTA -->
-      <div class="upgrade-cta" id="upgrade-cta" style="display: none;">
-        <p>⚡ Upgrade to Pro for unlimited suggestions!</p>
-        <button class="btn btn-primary" id="upgrade-btn">Upgrade to Pro - $9.99/mo</button>
+        <!-- Usage Limit -->
+        <div class="usage-limit">
+          <div class="usage-bar">
+            <div class="usage-progress" id="usage-progress"></div>
+          </div>
+          <div class="usage-text">
+            <span id="remaining-count">50</span> / 50 suggestions remaining
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+          <h3>Quick Actions</h3>
+          <button class="action-btn" id="browse-icebreakers">
+            🎯 Browse Icebreakers
+          </button>
+          <button class="action-btn" id="view-analytics">
+            📈 View Analytics
+          </button>
+          <button class="action-btn" id="analyze-style">
+            🧠 Analyze My Style
+          </button>
+        </div>
+
+        <!-- Upgrade CTA -->
+        <div class="upgrade-cta" id="upgrade-cta" style="display: none;">
+          <p>⚡ Upgrade to Pro for unlimited suggestions!</p>
+          <button class="btn btn-primary" id="upgrade-btn">Upgrade - $9.99/mo</button>
+        </div>
       </div>
     </div>
 
-    <!-- Settings Section -->
-    <div class="settings-section">
-      <h2>⚙️ Settings</h2>
+    <!-- Icebreakers Tab -->
+    <div class="tab-content" id="icebreakers-tab">
+      <div class="icebreakers-section">
+        <!-- Search -->
+        <div class="search-box">
+          <input
+            type="text"
+            id="icebreaker-search"
+            placeholder="Search icebreakers..."
+            class="input"
+          />
+        </div>
 
-      <div class="setting-group">
-        <label for="api-key">OpenAI API Key</label>
-        <input
-          type="password"
-          id="api-key"
-          placeholder="sk-..."
-          class="input"
-        />
-        <p class="help-text">
-          Get your API key from <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI</a>
-        </p>
+        <!-- Category Filter -->
+        <div class="category-filter">
+          <button class="filter-btn active" data-category="all">All</button>
+          <button class="filter-btn" data-category="flirty">😏 Flirty</button>
+          <button class="filter-btn" data-category="funny">😂 Funny</button>
+          <button class="filter-btn" data-category="thoughtful">💭 Thoughtful</button>
+          <button class="filter-btn" data-category="casual">👋 Casual</button>
+          <button class="filter-btn" data-category="creative">✨ Creative</button>
+        </div>
+
+        <!-- Icebreaker List -->
+        <div class="icebreaker-list" id="icebreaker-list">
+          <!-- Populated by JavaScript -->
+        </div>
       </div>
+    </div>
 
-      <div class="setting-group">
-        <label for="preferred-tone">Preferred Tone</label>
-        <select id="preferred-tone" class="select">
-          <option value="balanced">Balanced</option>
-          <option value="casual">Casual</option>
-          <option value="flirty">Flirty</option>
-          <option value="friendly">Friendly</option>
-        </select>
+    <!-- Analytics Tab -->
+    <div class="tab-content" id="analytics-tab">
+      <div class="analytics-section">
+        <h2>Conversation Analytics</h2>
+
+        <!-- Overall Stats -->
+        <div class="analytics-overview">
+          <div class="analytics-card">
+            <div class="analytics-label">Engagement Score</div>
+            <div class="analytics-value" id="engagement-score">--</div>
+            <div class="analytics-meter">
+              <div class="meter-fill" id="engagement-meter"></div>
+            </div>
+          </div>
+          <div class="analytics-card">
+            <div class="analytics-label">Response Rate</div>
+            <div class="analytics-value" id="response-rate">--</div>
+          </div>
+          <div class="analytics-card">
+            <div class="analytics-label">Active Conversations</div>
+            <div class="analytics-value" id="active-convos">--</div>
+          </div>
+        </div>
+
+        <!-- Top Emojis & Words -->
+        <div class="analytics-insights">
+          <div class="insight-box">
+            <h3>Top Emojis</h3>
+            <div id="top-emojis">--</div>
+          </div>
+          <div class="insight-box">
+            <h3>Common Words</h3>
+            <div id="top-words">--</div>
+          </div>
+        </div>
+
+        <!-- Conversation Stages -->
+        <div class="conversation-stages">
+          <h3>Conversation Breakdown</h3>
+          <div class="stage-item">
+            <span class="stage-label">Opening</span>
+            <div class="stage-bar">
+              <div class="stage-fill" id="stage-opening"></div>
+            </div>
+            <span class="stage-count" id="count-opening">0</span>
+          </div>
+          <div class="stage-item">
+            <span class="stage-label">Ongoing</span>
+            <div class="stage-bar">
+              <div class="stage-fill" id="stage-ongoing"></div>
+            </div>
+            <span class="stage-count" id="count-ongoing">0</span>
+          </div>
+          <div class="stage-item">
+            <span class="stage-label">Planning</span>
+            <div class="stage-bar">
+              <div class="stage-fill" id="stage-planning"></div>
+            </div>
+            <span class="stage-count" id="count-planning">0</span>
+          </div>
+        </div>
+
+        <!-- Success Metrics -->
+        <div class="success-metrics">
+          <h3>Success Metrics</h3>
+          <div class="metric-item">
+            <span class="metric-icon">📱</span>
+            <span class="metric-label">Numbers Exchanged</span>
+            <span class="metric-value" id="numbers-exchanged">0</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-icon">📅</span>
+            <span class="metric-label">Dates Planned</span>
+            <span class="metric-value" id="dates-planned">0</span>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div class="setting-group">
-        <label for="suggestions-count">Number of Suggestions</label>
-        <select id="suggestions-count" class="select">
-          <option value="3">3 options</option>
-          <option value="4">4 options</option>
-          <option value="5">5 options</option>
-        </select>
+    <!-- Settings Tab -->
+    <div class="tab-content" id="settings-tab">
+      <div class="settings-section">
+        <h2>Settings</h2>
+
+        <div class="setting-group">
+          <label for="api-key">OpenAI API Key</label>
+          <input
+            type="password"
+            id="api-key"
+            placeholder="sk-..."
+            class="input"
+          />
+          <p class="help-text">
+            Get your API key from <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI</a>
+          </p>
+        </div>
+
+        <div class="setting-group">
+          <label for="preferred-tone">Preferred Tone</label>
+          <select id="preferred-tone" class="select">
+            <option value="balanced">Balanced</option>
+            <option value="casual">Casual</option>
+            <option value="flirty">Flirty</option>
+            <option value="friendly">Friendly</option>
+          </select>
+        </div>
+
+        <div class="setting-group">
+          <label for="suggestions-count">Number of Suggestions</label>
+          <select id="suggestions-count" class="select">
+            <option value="3">3 options</option>
+            <option value="4">4 options</option>
+            <option value="5">5 options</option>
+          </select>
+        </div>
+
+        <div class="setting-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="auto-reply" class="checkbox" />
+            <span>Enable Auto-Reply Mode</span>
+          </label>
+          <p class="help-text">⚠️ Requires manual approval before sending</p>
+        </div>
+
+        <div class="setting-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="smart-timing" class="checkbox" />
+            <span>Smart Timing Suggestions</span>
+          </label>
+          <p class="help-text">Get notified about optimal reply times</p>
+        </div>
+
+        <button class="btn btn-primary btn-full" id="save-settings">
+          Save Settings
+        </button>
+
+        <!-- Data Management -->
+        <div class="data-management">
+          <h3>Data Management</h3>
+          <button class="btn btn-secondary btn-full" id="export-data">
+            📤 Export My Data
+          </button>
+          <button class="btn btn-secondary btn-full" id="reset-data">
+            🗑️ Reset All Data
+          </button>
+        </div>
       </div>
-
-      <div class="setting-group">
-        <label class="checkbox-label">
-          <input type="checkbox" id="auto-reply" class="checkbox" />
-          <span>Enable Auto-Reply Mode</span>
-        </label>
-        <p class="help-text">⚠️ Requires manual approval before sending</p>
-      </div>
-
-      <button class="btn btn-primary btn-full" id="save-settings">
-        Save Settings
-      </button>
     </div>
 
     <!-- Status Message -->
@@ -104,10 +258,7 @@
     <!-- Footer -->
     <div class="footer">
       <p>Made with ❤️ for better conversations</p>
-      <div class="links">
-        <a href="#" id="learn-style">📚 Analyze My Style</a>
-        <a href="#" id="reset-data">🗑️ Reset Data</a>
-      </div>
+      <p class="version">v1.0.0 • <a href="#" id="view-roadmap">Roadmap</a></p>
     </div>
   </div>
 
